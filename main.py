@@ -1,15 +1,16 @@
 import sys
 
 from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QDialog
+from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow
 from PyQt5.QtGui import QPainter, QColor
+from ui_file import Ui_Dialog
 from random import randint
 
 
-class Suprematism(QDialog):
+class Suprematism(QMainWindow, Ui_Dialog):
     def __init__(self):
         super().__init__()
-        uic.loadUi('YellowCirclesDesign.ui', self)
+        self.setupUi(self)
         self.flag = False
         self.pushButton.clicked.connect(self.repaint)
 
@@ -23,7 +24,7 @@ class Suprematism(QDialog):
 
     def run(self, qp):
         diameter = randint(20, 150)
-        qp.setBrush(QColor('yellow'))
+        qp.setBrush(QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
         qp.drawEllipse(randint(50, 800) - diameter // 2, randint(50, 600) - diameter // 2, diameter, diameter)
 
 
